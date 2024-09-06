@@ -127,13 +127,16 @@ const StoryDetails = () => {
           </Link>
         </section>
 
-        {/* Notes Section */}
         <section className="mb-8">
-          <h2 className="text-2xl mb-4">Events</h2>
+          <Link to={`/story/${id}/events`}>
+            <h2 className="text-2xl mb-4">Events</h2>
+          </Link>
         </section>
 
         <section className="mb-8">
-          <h2 className="text-2xl mb-4">Notes</h2>
+          <Link to={`/story/${id}/notes`}>
+            <h2 className="text-2xl mb-4">Notes</h2>
+          </Link>
         </section>
 
         {/* Other Sections */}

@@ -21,6 +21,12 @@ import CreateLocation from './components/Locations/CreateLocation';
 import Plots from './components/Plots/Plots';
 import CreatePlot from './components/Plots/CreatePlot';
 import PlotDetails from './components/Plots/PlotDetails';
+import Events from './components/Events/Events';
+import CreateEvent from './components/Events/CreateEvent';
+import EventDetails from './components/Events/EventDetails';
+import Notes from './components/Notes/Notes';
+import CreateNote from './components/Notes/CreateNote';
+import NoteDetails from './components/Notes/NoteDetails';
 
 function App() {
   const user = useAuth();
@@ -70,7 +76,12 @@ function App() {
                 <Route path="/story/:id/plots" element={<Plots />} />
                 <Route path="/story/:id/create-plot" element={<CreatePlot />} />
                 <Route path="/story/:id/plots/:plotId" element={<PlotDetails />} />
-
+                <Route path="/story/:id/events" element={<Events />} />
+                <Route path="/story/:id/create-event" element={<CreateEvent />} />
+                <Route path="/story/:id/events/:eventId" element={<EventDetails />} />
+                <Route path="/story/:id/notes" element={<Notes />} />
+                <Route path="/story/:id/create-note" element={<CreateNote />} />
+                <Route path="/story/:id/notes/:noteId" element={<NoteDetails />} />
               </>
             )
             
