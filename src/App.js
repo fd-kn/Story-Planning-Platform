@@ -27,6 +27,9 @@ import EventDetails from './components/Events/EventDetails';
 import Notes from './components/Notes/Notes';
 import CreateNote from './components/Notes/CreateNote';
 import NoteDetails from './components/Notes/NoteDetails';
+import Gallery from './components/Gallery/Gallery';
+import CreateGalleryItem from './components/Gallery/CreateGalleryItem';
+import GalleryItemDetails from './components/Gallery/GalleryItemDetails';
 
 function App() {
   const user = useAuth();
@@ -82,6 +85,9 @@ function App() {
                 <Route path="/story/:id/notes" element={<Notes />} />
                 <Route path="/story/:id/create-note" element={<CreateNote />} />
                 <Route path="/story/:id/notes/:noteId" element={<NoteDetails />} />
+                <Route path="/story/:id/gallery" element={<Gallery />} />
+                <Route path="/story/:id/create-gallery-item" element={<CreateGalleryItem />} />
+                <Route path="/story/:id/gallery/:galleryItemId" element={<GalleryItemDetails />} />
               </>
             )
             

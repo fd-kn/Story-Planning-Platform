@@ -141,7 +141,9 @@ const StoryDetails = () => {
 
         {/* Other Sections */}
         <section className="mb-8">
-          <h2 className="text-2xl mb-4">Gallery</h2>
+          <Link to={`/story/${id}/gallery`}>
+            <h2 className="text-2xl mb-4">Gallery</h2>
+          </Link>
         </section>
       </div>
     </div>
