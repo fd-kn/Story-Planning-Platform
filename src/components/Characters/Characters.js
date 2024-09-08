@@ -21,40 +21,53 @@ const Characters = () => {
   }, [id]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="text-center">
+          <p className="text-xl font-semibold text-gray-600">Loading characters...</p>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div className="flex flex-col items-center">
-      <h1 className="text-3xl mb-8">Characters</h1>
+    <div className="min-h-screen bg-gray-100 py-10">
+      <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+        <h1 className="text-4xl font-bold text-center mb-8 text-gray-800">Characters</h1>
 
-      {characters.length > 0 ? (
-        <ul className="mb-8">
-          {characters.map((character) => (
-            <li key={character.id} className="mb-2">
-              <Link
-                to={`/story/${id}/characters/${character.id}`}
-                className="text-blue-500 underline"
-              >
-                {character.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No characters yet.</p>
-      )}
+        {characters.length > 0 ? (
+          <ul className="space-y-4">
+            {characters.map((character) => (
+              <li key={character.id} className="p-4 bg-gray-50 rounded-lg shadow-md">
+                <Link
+                  to={`/story/${id}/characters/${character.id}`}
+                  className="text-lg font-medium text-blue-600 hover:underline"
+                >
+                  {character.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-center text-lg text-gray-600">No characters yet.</p>
+        )}
 
-      <Link
-        to={`/story/${id}/create-character`}
-        className="bg-blue-500 text-white px-4 py-2 rounded"
-      >
-        Create Character
-      </Link>
+        <div className="mt-10 flex justify-center space-x-4">
+          <Link
+            to={`/story/${id}/create-character`}
+            className="bg-blue-500 text-white py-2 px-6 rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
+          >
+            Create Character
+          </Link>
 
-      <Link to={`/story/${id}`} className="mt-4 text-blue-500 underline">
-        Back to Story Details
-      </Link>
+          <Link
+            to={`/story/${id}`}
+            className="bg-gray-300 text-gray-700 py-2 px-6 rounded-lg shadow-md hover:bg-gray-400 transition duration-300"
+          >
+            Back to Story Details
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };

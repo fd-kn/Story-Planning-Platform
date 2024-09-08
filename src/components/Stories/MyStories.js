@@ -25,20 +25,37 @@ const MyStories = () => {
   }, [user]);
 
   return (
-    <div>
-        <Link to={'/homepage'}>Back</Link>
-      <h2 className="text-xl mb-4">Your Stories</h2>
-      {stories.length === 0 ? (
-        <p>No stories found.</p>
-      ) : (
-        <ul>
-          {stories.map((story) => (
-           <li key={story.id} className="border-b py-2">
-                <Link to={`/story/${story.id}`}>{story.title}</Link> 
-            </li>
-          ))}
-        </ul>
-      )}
+    <div className="min-h-screen flex flex-col items-center bg-gray-50 py-8 px-4">
+      <div className="w-full max-w-4xl">
+        <Link
+          to={'/homepage'}
+          className="text-blue-500 hover:underline mb-6 block"
+        >
+          &larr; Back to Homepage
+        </Link>
+
+        <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Your Stories</h2>
+
+        {stories.length === 0 ? (
+          <p className="text-gray-500 text-center">You haven't created any stories yet.</p>
+        ) : (
+          <ul className="space-y-4">
+            {stories.map((story) => (
+              <li
+                key={story.id}
+                className="border border-gray-200 rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow duration-200"
+              >
+                <Link
+                  to={`/story/${story.id}`}
+                  className="text-xl font-semibold text-blue-600 hover:underline"
+                >
+                  {story.title || 'Untitled Story'}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 };
