@@ -7,7 +7,7 @@ import { updatePassword } from 'firebase/auth';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'; // Import eye icons
 
 const UsernameSetup = () => {
-  const { user, loading: authLoading } = useAuth();
+  const { user } = useAuth();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState(''); // New state for confirmation password
