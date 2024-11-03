@@ -1,6 +1,6 @@
 // src/App.js
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import useAuth from './hooks/useAuth';
 import AuthCard from './components/Auth/AuthCard';
 import Homepage from './components/UI/Homepage';
@@ -12,91 +12,68 @@ import UsernameSetup from './components/UI/UsernameSetup';
 import NewStoryTitle from './components/Stories/NewStoryTitle';
 import MyStories from './components/Stories/MyStories';
 import StoryDetails from './components/Stories/StoryDetails';
-import CreateCharacter from './components/Characters/CreateCharacter';
-import Characters from './components/Characters/Characters';
-import CharacterDetails from './components/Characters/CharacterDetails';
-import Locations from './components/Locations/Locations';
-import LocationDetails from './components/Locations/LocationDetails';
-import CreateLocation from './components/Locations/CreateLocation';
-import Plots from './components/Plots/Plots';
-import CreatePlot from './components/Plots/CreatePlot';
-import PlotDetails from './components/Plots/PlotDetails';
-import Events from './components/Events/Events';
-import CreateEvent from './components/Events/CreateEvent';
-import EventDetails from './components/Events/EventDetails';
-import Notes from './components/Notes/Notes';
-import CreateNote from './components/Notes/CreateNote';
-import NoteDetails from './components/Notes/NoteDetails';
-import Gallery from './components/Gallery/Gallery';
-import CreateGalleryItem from './components/Gallery/CreateGalleryItem';
-import GalleryItemDetails from './components/Gallery/GalleryItemDetails';
+import Profile from './components/UI/Profile';
+import CategoriesPage from './components/Pages/CategoriesPage';
+import CreateCategoryPage from './components/Pages/CreateCategoryPage';
+import DetailsPage from './components/Pages/DetailsPage';
 
 function App() {
-  const user = useAuth();
-
+  const { user, loading: authLoading } = useAuth();
   const [usernameExists, setUsernameExists] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const checkUsername = async () => {
-      if (user) {
-        const userRef = doc(db, 'users', user.uid);
-        const userDoc = await getDoc(userRef);
+      if (user && user.uid) {
+        try {
+          const userRef = doc(db, 'users', user.uid);
+          const userDoc = await getDoc(userRef);
 
-        if (userDoc.exists() && userDoc.data().username) {
-          setUsernameExists(true);
-        } else {
+          if (userDoc.exists() && userDoc.data().username) {
+            setUsernameExists(true);
+          } else {
+            setUsernameExists(false);
+          }
+        } catch (error) {
+          console.error("Error checking username:", error);
           setUsernameExists(false);
         }
+      } else {
+        setUsernameExists(false);
       }
+      setLoading(false);
     };
 
-    checkUsername();
-  }, [user]);
+    if (!authLoading) {
+      checkUsername();
+    }
+  }, [user, authLoading]);
 
+  if (authLoading || loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Router>
       <div className="App">
-      <Navbar />
-
+        <Navbar />
         <Routes>
-
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/authcard" element={<AuthCard />} />
           {user ? (
-            usernameExists === false ? (
-              <Route path="/setup-username" element={<UsernameSetup />} />
-            ) : (
-              <>
-                <Route path="/homepage" element={<Homepage />} />
-                <Route path="/newstorytitle" element={<NewStoryTitle />} />
-                <Route path="/mystories" element={<MyStories />} />
-                <Route path="/story/:id" element={<StoryDetails />} />
-                <Route path="/story/:id/characters" element={<Characters />} />
-                <Route path="/story/:id/create-character" element={<CreateCharacter />} />
-                <Route path="/story/:id/characters/:characterId" element={<CharacterDetails />} />
-                <Route path="/story/:id/locations" element={<Locations />} />
-                <Route path="/story/:id/locations/:locationId" element={<LocationDetails />} />
-                <Route path="/story/:id/create-location" element={<CreateLocation />} />
-                <Route path="/story/:id/plots" element={<Plots />} />
-                <Route path="/story/:id/create-plot" element={<CreatePlot />} />
-                <Route path="/story/:id/plots/:plotId" element={<PlotDetails />} />
-                <Route path="/story/:id/events" element={<Events />} />
-                <Route path="/story/:id/create-event" element={<CreateEvent />} />
-                <Route path="/story/:id/events/:eventId" element={<EventDetails />} />
-                <Route path="/story/:id/notes" element={<Notes />} />
-                <Route path="/story/:id/create-note" element={<CreateNote />} />
-                <Route path="/story/:id/notes/:noteId" element={<NoteDetails />} />
-                <Route path="/story/:id/gallery" element={<Gallery />} />
-                <Route path="/story/:id/create-gallery-item" element={<CreateGalleryItem />} />
-                <Route path="/story/:id/gallery/:galleryItemId" element={<GalleryItemDetails />} />
-              </>
-            )
-            
-          ) : (
             <>
-                <Route path='/' element={<LandingPage />}/>
-                <Route path="/authcard" element={<AuthCard />} />
+              <Route path="/homepage" element={<Homepage />} />
+              <Route path="/setup-username" element={<UsernameSetup />} />
+              <Route path="/newstorytitle" element={<NewStoryTitle />} />
+              <Route path="/mystories" element={<MyStories />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/story/:id" element={<StoryDetails />} />
+              <Route path="/story/:id/:category" element={<CategoriesPage />} />
+              <Route path="/story/:id/create/:category" element={<CreateCategoryPage />} />
+              <Route path="/story/:id/:category/:itemId" element={<DetailsPage />} />
             </>
-
+          ) : (
+            <Route path="*" element={<Navigate to="/authcard" />} />
           )}
         </Routes>
       </div>

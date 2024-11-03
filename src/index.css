@@ -1,3 +1,121 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes blob {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* Base container for a page layout */
+.page-container {
+  @apply min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 py-10;
+}
+
+/* Card style used for content blocks */
+.card {
+  @apply max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg;
+}
+
+/* Page title */
+.page-title {
+  @apply text-4xl font-bold text-center mb-8 text-gray-800;
+}
+
+/* Button styles (primary and secondary) */
+.primary-btn {
+  @apply bg-blue-500 text-white py-2 px-6 rounded-lg shadow-md hover:bg-blue-600 transition duration-300;
+}
+
+.secondary-btn {
+  @apply bg-red-300 text-gray-700 py-2 px-6 rounded-lg shadow-md hover:bg-red-400 transition duration-300;
+}
+
+/* Loading screen styles */
+.loading-screen {
+  @apply flex justify-center items-center h-screen;
+}
+
+.loading-text {
+  @apply text-xl font-semibold text-gray-600;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 255, 0, 0.8); /* Change color as needed */
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.glow-border {
+  animation: neon-glow 1.5s infinite alternate; /* Adjust duration as needed */
+  border: 2px solid transparent; /* Ensure the border is transparent to show the glow */
+  background: linear-gradient(white, white) padding-box, /* Background color */
+              linear-gradient(to right, rgba(0, 0, 255, 0.5), rgba(255, 0, 255, 0.5)) border-box; /* Neon gradient */
+}
+
+@keyframes neon-glow {
+  0% {
+    box-shadow: 0 0 5px rgba(0, 0, 255, 0.7), 0 0 10px rgba(0, 0, 255, 0.7), 0 0 15px rgba(255, 0, 255, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(0, 0, 255, 1), 0 0 20px rgba(0, 0, 255, 1), 0 0 30px rgba(255, 0, 255, 1);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(0, 0, 255, 0.7), 0 0 10px rgba(0, 0, 255, 0.7), 0 0 15px rgba(255, 0, 255, 0.7);
+  }
+}
+
+.circle {
+  animation: move 20s infinite alternate;
+}
+
+@keyframes move {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(20px, -20px);
+  }
+  50% {
+    transform: translate(-20px, 20px);
+  }
+  75% {
+    transform: translate(10px, 10px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.glow-animation {
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px rgba(255, 105, 180, 0.5), 0 0 10px rgba(255, 105, 180, 0.5), 0 0 15px rgba(255, 105, 180, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(255, 105, 180, 1), 0 0 20px rgba(255, 105, 180, 1), 0 0 30px rgba(255, 105, 180, 1);
+  }
+}
