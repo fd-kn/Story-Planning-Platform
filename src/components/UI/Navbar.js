@@ -1,7 +1,6 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import { HomeIcon, UserCircleIcon, ArrowLeftOnRectangleIcon, BookOpenIcon } from '@heroicons/react/24/outline';
+import { HomeIcon, UserCircleIcon, ArrowLeftOnRectangleIcon } from '@heroicons/react/24/outline';
 
 const Navbar = () => {
   const { user } = useAuth(); // Destructure user from useAuth

@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { deleteDoc, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db, storage } from '../../firebaseconfig';
-import { deleteObject, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import DEFAULT_IMAGE_URL from '../../defaultimages/defaulticon.jpg';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import Modal from '../UI/Modal';
 import { PencilIcon, TrashIcon, ArrowLeftIcon, PhotoIcon } from '@heroicons/react/24/solid';
 import { UserIcon, MapPinIcon, BookOpenIcon, CalendarIcon, PencilSquareIcon } from '@heroicons/react/24/outline';
@@ -25,7 +24,6 @@ const StoryDetails = () => {
   const [isRemovingImage, setIsRemovingImage] = useState(false);
   const [titleError, setTitleError] = useState('');
 
-  const defaultImageUrl = 'DEFAULT_IMAGE_PLACEHOLDER_URL';
 
   useEffect(() => {
     const fetchStory = async () => {

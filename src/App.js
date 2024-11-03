@@ -19,7 +19,7 @@ import DetailsPage from './components/Pages/DetailsPage';
 
 function App() {
   const { user, loading: authLoading } = useAuth();
-  const [usernameExists, setUsernameExists] = useState(null);
+  const [, setUsernameExists] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
