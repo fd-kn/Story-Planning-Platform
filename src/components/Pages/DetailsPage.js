@@ -157,11 +157,18 @@ const DetailsPage = () => {
   const handleDelete = async () => {
     const itemRef = doc(db, `stories/${id}/${category}`, itemId);
     try {
+      // Check if the item has an image and it's not the default image
       if (item?.image && item.image !== defaultImage) {
         const imageRef = ref(storage, `${category}/${id}/${item.image.split('/').pop()}`);
-        await deleteObject(imageRef);
+        try {
+          await deleteObject(imageRef); // Attempt to delete the image
+        } catch (error) {
+          // Log the error but do not prevent the document deletion
+          console.error(`Error deleting image:`, error);
+        }
       }
 
+      // Now delete the document
       await deleteDoc(itemRef);
       navigate(`/story/${id}/${category}`);
     } catch (error) {
