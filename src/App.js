@@ -58,7 +58,7 @@ function App() {
       <div className="App">
         <Navbar />
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={user ? <Navigate to="/homepage" /> : <LandingPage />} />
           <Route path="/authcard" element={<AuthCard />} />
           {user ? (
             <>
