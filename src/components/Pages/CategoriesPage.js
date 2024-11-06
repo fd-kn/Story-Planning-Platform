@@ -111,7 +111,7 @@ const CategoriesPage = () => {
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold text-pink-500 capitalize">{category}</h1>
-          <div className="flex space-x-4">
+          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <Link
               to={`/story/${id}/create/${category}`}
               className="flex items-center px-4 py-2 bg-gradient-to-r from-teal-400 to-blue-500 text-white rounded-lg hover:from-teal-500 hover:to-blue-600 transition-colors duration-300 shadow-md"

@@ -257,14 +257,15 @@ const DetailsPage = () => {
               <div className="flex space-x-4">
                 <button
                   onClick={() => setIsEditing(true)}
-                  className="flex items-center px-4 py-2 bg-gradient-to-r from-teal-400 to-blue-500 text-white rounded-lg hover:from-teal-500 hover:to-blue-600 transition duration-300"
+                  className="flex ml-2 items-center px-3 py-2 bg-gradient-to-r from-teal-400 to-blue-500 text-white rounded-lg hover:from-teal-500 hover:to-blue-600 transition duration-300"
                 >
                   <PencilIcon className="h-5 w-5 mr-2" />
                   Edit
                 </button>
+
                 <button
                   onClick={() => setIsDeleteModalOpen(true)}
-                  className="flex items-center px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition duration-300"
+                  className="flex items-center px-3 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition duration-300"
                 >
                   <TrashIcon className="h-5 w-5 mr-2" />
                   Delete
@@ -317,9 +318,9 @@ const DetailsPage = () => {
                 </h1>
  
                 {category === 'characters' ? (
-                  <div className="flex mb-8"> {/* Flex container for image and details */}
+                  <div className="flex flex-col items-start mb-8 md:flex-row"> {/* Center the image and details on small screens */}
                     {/* Image for Characters */}
-                    <div className="w-1/3 mr-10"> {/* Image takes 1/3 of the width */}
+                    <div className="w-full md:w-1/3 mb-6 md:mb-0 mr-6"> {/* Add margin-right for spacing */}
                       <div className="rounded-lg overflow-hidden shadow-lg">
                         <img 
                           src={item.image || DEFAULT_IMAGES.characters} 
@@ -330,8 +331,8 @@ const DetailsPage = () => {
                     </div>
                     
                     {/* Basic Info for Characters */}
-                    <div className="w-2/3"> {/* Details take 2/3 of the width */}
-                      <div className="grid grid-cols-2 gap-4 mb-6"> {/* Add margin bottom for spacing */}
+                    <div className="w-full md:w-2/3"> {/* Details take full width on small screens */}
+                      <div className="grid grid-cols-2 gap-4 mb-6"> {/* Two columns for fields */}
                         <DisplayField label="Birthdate" value={item.birthdate} />
                         <DisplayField label="Birthplace" value={item.birthplace} />
                         <DisplayField label="Age" value={item.age} />
