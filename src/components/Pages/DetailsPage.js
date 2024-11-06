@@ -226,7 +226,7 @@ const DetailsPage = () => {
         return (
           <>
             <InputField name="title" label="Title" value={editForm.title} onChange={handleChange} required />
-            <InputField name="caption" label="Caption" value={editForm.caption} onChange={handleChange} required />
+            <InputField name="caption" label="Caption" value={editForm.caption} onChange={handleChange}  />
           </>
         );
       default:
@@ -351,7 +351,7 @@ const DetailsPage = () => {
                       />
                     </div>
                     <p className="text-gray-500 mt-2"> {/* Display caption below the image */}
-                      {editForm.caption ? editForm.caption : 'No caption...'}
+                      {item.caption ? item.caption : 'No caption...'}
                     </p>
                   </div>
                 ) : ( // For other categories
@@ -542,7 +542,7 @@ const DisplayFields = ({ item, category }) => {
 
 const DisplayField = ({ label, value }) => (
   <div className="mb-6">
-    {label && <h3 className="text-xl font-semibold text-teal-700 mb-3">{label}:</h3>}
+    {label && label !== 'Note' && <h3 className="text-xl font-semibold text-teal-700 mb-3">{label}:</h3>}
     <p className="text-gray-700 whitespace-pre-wrap text-lg leading-relaxed">{value || `No ${label || 'information'} provided`}</p>
   </div>
 );

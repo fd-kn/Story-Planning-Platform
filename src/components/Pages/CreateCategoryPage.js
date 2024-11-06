@@ -109,6 +109,7 @@ const CreateCategoryPage = () => {
   };
 
   const renderFields = () => {
+    
     const commonProps = {
       onChange: handleInputChange,
       onKeyDown: handleKeyDown,
@@ -169,7 +170,13 @@ const CreateCategoryPage = () => {
         return (
           <>
             <input name="title" placeholder="Title *" {...requiredProps} /> {/* Title input */}
-            <input className={`${commonProps.className}`} name="caption" placeholder="Caption "  />
+            <input 
+              name="caption" 
+              placeholder="Caption" 
+              className={`${commonProps.className}`}
+              value={formData.caption}
+              onChange={handleInputChange}
+            />
           </>
         );
       default:
