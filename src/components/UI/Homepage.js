@@ -92,12 +92,12 @@ const Homepage = () => {
                     </div>
                   </Link>
                 </div>
-                <div className="relative mt-14 text-center p-2">
+                {/* <div className="relative mt-14 text-center p-2">
                   <p className="text-gray-900 italic font-semibold relative z-10">
                     If you have any questions or suggestions, feel free to reach out on Instagram at <a href="https://instagram.com/hazylight" className="text-pink-500 hover:underline"> @hazylight</a>. I welcome your thoughts and ideas!
                   </p>
                   <div className="absolute inset-0 border-2 border-pink-500 rounded-lg glow-animation"></div>
-                </div>
+                </div> */}
               </>
             ) : (
               <div className="text-center">
