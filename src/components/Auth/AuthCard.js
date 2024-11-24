@@ -66,24 +66,23 @@ const AuthCard = () => {
     setError(null);
     setIsLoading(true);
 
-    // Set a timeout to reset loading state if the popup is closed
     const timeoutId = setTimeout(() => {
       setIsLoading(false);
       setError('Sign-in process was interrupted. Please try again.');
-    }, 3000); // 10 seconds timeout
+    }, 3000); 
 
     try {
       const result = await signInWithPopup(auth, googleProvider);
-      clearTimeout(timeoutId); // Clear the timeout if sign-in is successful
+      clearTimeout(timeoutId); 
       const uid = result.user.uid;
       const hasUsername = await checkUsername(uid);
 
       navigate(hasUsername ? '/homepage' : '/setup-username');
     } catch (error) {
-      clearTimeout(timeoutId); // Clear the timeout if an error occurs
+      clearTimeout(timeoutId); 
       setError(errorMessages[error.code] || 'An unexpected error occurred. Please try again.');
     } finally {
-      setIsLoading(false); // Ensure loading state is reset
+      setIsLoading(false); 
     }
   };
 
@@ -100,10 +99,10 @@ const AuthCard = () => {
       <div className="bg-white p-8 rounded-lg shadow-xl w-full max-w-md z-10">
         {/* Back Button */}
         <button
-          onClick={() => navigate('/')} // Navigate to the landing page
+          onClick={() => navigate('/')} 
           className=" top-4 left-4 text-gray-600 hover:text-indigo-600 transition duration-300"
         >
-          <ArrowLeftIcon className="w-6 h-6" /> {/* Larger back arrow icon */}
+          <ArrowLeftIcon className="w-6 h-6" /> 
         </button>
 
         <h2 className="text-3xl font-bold mb-4 text-center text-gray-800">
@@ -158,7 +157,7 @@ const AuthCard = () => {
               </button>
             </div>
           </div>
-          {isSignUp && ( // Password confirmation input
+          {isSignUp && ( 
             <div className="relative">
               <label className="block mb-1 font-medium text-gray-700">Confirm Password</label>
               <div className="flex items-center">

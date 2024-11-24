@@ -12,7 +12,6 @@ const LandingPage = () => {
         muted
       ></video>
 
-      {/* Text content with a card-like background */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4">
         <div className="bg-black bg-opacity-60 p-10 rounded-lg shadow-lg text-center max-w-lg backdrop-blur-md">
           <h1 className="text-5xl font-extrabold mb-6 leading-tight">

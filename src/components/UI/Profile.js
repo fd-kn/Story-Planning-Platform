@@ -110,7 +110,7 @@ const Profile = () => {
         } finally {
           // Always log out and redirect to the landing page
           await signOut(auth);
-          navigate('/'); // Redirect to the landing page
+          navigate('/'); 
         }
       }
     });
